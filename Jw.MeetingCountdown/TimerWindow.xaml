@@ -1,0 +1,51 @@
+﻿<Window x:Class="Jw.MeetingCountdown.TimerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Jw.MeetingCountdown"
+        mc:Ignorable="d"
+        Height="800" Width="1024" Background="Black"
+        WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown" MouseDoubleClick="Window_MouseDoubleClick"
+        WindowStartupLocation="Manual" KeyUp="Window_KeyUp" Loaded="OnLoad">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41" />
+            <RowDefinition Height="500" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" Height="41">
+            <Button Name="btnMinimize" Width="40" Height="40" BorderBrush="Transparent" Background="Transparent"
+                    Content="&#xf2d1;" FontFamily="{StaticResource FontAwesome}" FontSize="18px"
+                    Click="btnMinimize_Click"/>
+            <Button Name="btnRestore" Width="40" Height="40" BorderBrush="Transparent" Background="Transparent"
+                    Content="&#xf2d2;" FontFamily="{StaticResource FontAwesome}" FontSize="18px"
+                    Click="btnRestoreMaximize_Click" Visibility="{Binding BtnRestoreVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Name="btnMaximize" Width="40" Height="40" BorderBrush="Transparent" Background="Transparent"
+                    Content="&#xf2d0;" FontFamily="{StaticResource FontAwesome}" FontSize="18px"
+                    Click="btnRestoreMaximize_Click" Visibility="{Binding BtnMaximizeVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Name="btnClose" Content="&#xf2d3;" FontFamily="{StaticResource FontAwesome}" FontSize="18px"
+                    Width="40" Height="40" BorderBrush="Transparent" Background="Transparent"
+                    Click="btnClose_Click"/>
+        </StackPanel>
+        
+        <Label Grid.Row="1" Grid.Column="1" x:Name="label" Content="{Binding RemainingTime, UpdateSourceTrigger=PropertyChanged}" 
+               HorizontalAlignment="Center" VerticalAlignment="Top" 
+               Foreground="{Binding TimerColor, UpdateSourceTrigger=PropertyChanged}" FontSize="384" FontWeight="Bold"/>
+        <TextBlock Grid.Row="2" Grid.Column="1"
+            FontWeight="Bold" FontSize="96" Foreground="White"
+            TextAlignment="Center"
+            TextWrapping="Wrap" FontFamily="SimSun" VerticalAlignment="Center" HorizontalAlignment="Center"
+            Text="{Binding YearText, UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</Window>
